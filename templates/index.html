@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block game_title %}
+  <h1>Boggle!</h1>
+{% endblock %}
+
+{% block game_board %}
+  <table>
+    {% for row in board %}
+      <tr>
+        {% for el in row %}
+          <td>{{el}}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
+
+{% block guess_form %}
+  <form method="post">
+    <label for='word'>Enter a word!</label>
+    <input type='text' name='word'>
+    <button>Submit word</button>
+  </form>
+{% endblock %}
