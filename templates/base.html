@@ -4,11 +4,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/styles.css">
   <title>Document</title>
 </head>
 <body>
   {% block game_title %}{% endblock %}
   {% block game_board %}{% endblock %}
   {% block guess_form %}{% endblock %}
+  <!-- {% block guess_response %} {% endblock %} -->
+  <div class="message"></div>
+  <script src="http://unpkg.com/jquery"></script>
+  <script src="http://unpkg.com/axios/dist/axios.js"></script>
+  <script type="text/javascript" src="/static/scripts.js"></script>
 </body>
 </html>
