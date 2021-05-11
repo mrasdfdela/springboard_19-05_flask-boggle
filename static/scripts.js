@@ -1,21 +1,55 @@
-// function searchWord()
-//   const res = await axios.get()
-
+// sends word request to server and updates score/caption from response
 $('form').on("submit", async (e) => {
   e.preventDefault();
-  const req = {
-    params: {
-      search_word: $('input').val()
+  if ( parseInt($('.timer').text()) > 0 ) {
+    const req = {
+      params: {
+        search_word: $('input').val()
+      }
     }
+    const res = await axios.post("/", req);
+  
+    updateScore(res.data.result);
+    updateCaption(res.data.result);
+    $('input').val('')
   }
-  const res = await axios.post("/", req);
-  updateCaption(res.data.result)
 })
 
 function updateCaption(str) {
-  let $msg = $('<p>')
-  let msg_text = str.split("-").join(" ")
-  $msg.text(msg_text)
-
-  $('.message').html($msg)
+  let msg_text = str.split("-").join(" ");
+  $('.message').text(msg_text);
 }
+
+function updateScore(str){
+  let score = parseInt($('.score').text());
+  if (str === 'ok') {
+    let word_score = $('input').val().length;
+    score += word_score;
+  }
+  
+  $('.score').text(score);
+  $('.scoreBoard').show();
+}
+
+// sets countdown timer for boggle game
+window.setInterval(()=>{
+  let time = parseInt($('.timer').text());
+  if (time > 0) {
+    time -= 1
+    $('.timer').text(time);
+  } else {
+    $('.timer').toggleClass("time_expired")
+  }
+},1000)
+
+// sends high score at end of game
+window.setTimeout(async () => {
+  current_score = parseInt($('.score').text());
+  const req = {
+    params: {
+      new_score: current_score
+    }
+  }
+  const res = await axios.post("/score_board", req);
+  console.log(res.data);
+},parseInt($('.timer').text())*1000);

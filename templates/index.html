@@ -4,6 +4,10 @@
   <h1>Boggle!</h1>
 {% endblock %}
 
+{% block game_timer %}
+  <h2>Timer: <span class="timer">10</span></h2>
+{% endblock %}
+
 {% block game_board %}
   <table>
     {% for row in board %}
@@ -20,6 +24,16 @@
   <form method="post">
     <label for='word'>Enter a word!</label>
     <input type='text' name='word'>
-    <button>Submit word</button>
+    <button>Submit word</button> <span class="message"> </span>
   </form>
 {% endblock %}
+
+{% block game_score %}
+<h3 class="scoreBoard" hidden>Current Score: 
+  <span class="score">0</span>
+</h3>
+{% endblock %}
+
+<!-- {% block guess_response %}
+  <p class="message"></p>
+{% endblock %} -->

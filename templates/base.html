@@ -9,10 +9,14 @@
 </head>
 <body>
   {% block game_title %}{% endblock %}
+  {% block game_timer %}{% endblock %}
+  
   {% block game_board %}{% endblock %}
   {% block guess_form %}{% endblock %}
-  <!-- {% block guess_response %} {% endblock %} -->
-  <div class="message"></div>
+  
+  <!-- {% block guess_response %}{% endblock %} -->
+  {% block game_score %}{% endblock %}
+  
   <script src="http://unpkg.com/jquery"></script>
   <script src="http://unpkg.com/axios/dist/axios.js"></script>
   <script type="text/javascript" src="/static/scripts.js"></script>
